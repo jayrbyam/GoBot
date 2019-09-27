@@ -126,6 +126,27 @@ class Simulation(tk.Frame):
             [ None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None ],
             [ None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None ]
         ]
+        self.strings = [
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ],
+            [ [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [] ]
+        ]
 
         for r in range(19):
             rowArray = [ [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ] ]
@@ -208,6 +229,11 @@ class Simulation(tk.Frame):
         # Update drawn stones on the board
         for row in range(19):
             for col in range(19):
+                # Reset string indicators for this spot
+                for string in self.strings[row][col]:
+                    self.drawnBoard[row][col].delete(string)
+                self.strings[row][col] = []
+
                 stone = self.game.board.get(gotypes.Point(row = row + 1, col = col + 1))
                 if self.stones[row][col] is not None:
                     self.drawnBoard[row][col].delete(self.stones[row][col])
@@ -217,6 +243,43 @@ class Simulation(tk.Frame):
                     if stone == gotypes.Player.white:
                         fill = 'white'
                     self.stones[row][col] = self.drawnBoard[row][col].create_oval(5, 5, 20, 20, fill = fill, width = 0.5)
+
+                    left = col != 0 and self.game.board.get(gotypes.Point(row = row + 1, col = col)) == stone
+                    left_up = col != 0 and row != 0 and self.game.board.get(gotypes.Point(row = row, col = col)) == stone
+                    up = row != 0 and self.game.board.get(gotypes.Point(row = row, col = col + 1)) == stone
+                    right_up = col != 18 and row != 0 and self.game.board.get(gotypes.Point(row = row, col = col + 2)) == stone
+                    right = col != 18 and self.game.board.get(gotypes.Point(row = row + 1, col = col + 2)) == stone
+                    right_down = col != 18 and row != 18 and self.game.board.get(gotypes.Point(row = row + 2, col = col + 2)) == stone
+                    down = row != 18 and self.game.board.get(gotypes.Point(row = row + 2, col = col + 1)) == stone
+                    left_down = col != 0 and row != 18 and self.game.board.get(gotypes.Point(row = row + 2, col = col)) == stone
+
+                    if not left and not up:
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_arc(1, 1, 24, 24, style = 'arc', start = '90', extent = '90'))
+                    if left and not up:
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(-3, 1, 12.5, 1))
+                    if not left and up:
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(1, -3, 1, 12.5))
+                    if not right and not up:
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_arc(1, 1, 24, 24, style = 'arc', start = '0', extent = '90'))
+                    if right and not up:
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(12.5, 1, 28, 1))
+                    if not right and up:
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(24, -3, 24, 12.5))
+                    if not left and not down:
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_arc(1, 1, 24, 24, style = 'arc', start = '180', extent = '90'))
+                    if left and not down:
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(-3, 24, 12.5, 24))
+                    if not left and down:
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(1, 12.5, 1, 28))
+                    if not right and not down:
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_arc(1, 1, 24, 24, style = 'arc', start = '270', extent = '90'))
+                    if right and not down:
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(12.5, 24, 28, 24))
+                    if not right and down:
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(24, 12.5, 24, 28))
+                    
+
+
 
 
     def reset(self):
