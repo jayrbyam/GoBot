@@ -1,6 +1,9 @@
-from dlgo.agent import naive
-from dlgo import goboard_slow
+from dlgo.agent import naive, human
+from dlgo.minimax import alphabeta, minimax
+from dlgo.mcts import mcts
+from dlgo import goboard
 from dlgo import gotypes
+from dlgo.utils import point_from_coords
 from tkinter import Canvas
 import random
 import tkinter as tk
@@ -66,14 +69,14 @@ class Simulation(tk.Frame):
 
         # Options
 
-        self.team1AgentType = tk.StringVar(value="Random")
+        self.team1AgentType = tk.StringVar(value="Alpha Beta")
         self.team1AgentType.trace('w', self.agentTypeChanged)
-        self.team2AgentType = tk.StringVar(value="Random")
+        self.team2AgentType = tk.StringVar(value="Human")
         self.team2AgentType.trace('w', self.agentTypeChanged)
         tk.Label(self.optionsFrame, text="Team 1 Agent Type").grid(column = 0, row = 0)
-        self.team1Type = tk.OptionMenu(self.optionsFrame, self.team1AgentType, "Human", "Random")
+        self.team1Type = tk.OptionMenu(self.optionsFrame, self.team1AgentType, "Human", "Random", "Minimax", "Alpha Beta", "Monte Carlo")
         tk.Label(self.optionsFrame, text="Team 2 Agent Type").grid(column = 0, row = 1)
-        self.team2Type = tk.OptionMenu(self.optionsFrame, self.team2AgentType, "Random", "Human")
+        self.team2Type = tk.OptionMenu(self.optionsFrame, self.team2AgentType, "Human", "Random", "Minimax", "Alpha Beta", "Monte Carlo")
         self.team1Type.grid(column = 1, row = 0)
         self.team2Type.grid(column = 1, row = 1)
 
@@ -103,7 +106,7 @@ class Simulation(tk.Frame):
         self.gameInnerFrame = tk.Frame(self.gameFrame, borderwidth=0)
         self.gameInnerFrame.pack(padx=12.5, pady=12.5)
 
-        self.game = goboard_slow.GameState.new_game(19)
+        self.game = goboard.GameState.new_game(19)
         self.drawnBoard = []
         self.stones = [
             [ None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None ],
@@ -184,25 +187,9 @@ class Simulation(tk.Frame):
 
     def cellClicked(self, event, args):
         if (self.turn == 0 and self.team1AgentType.get() == "Human") or (self.turn == 1 and self.team2AgentType.get() == "Human"):
-            human = self.agents[self.turn]
-            human.percepts = args
-
-            if not hasattr(human.cellClicked, 'r'):
-                if self.game.board[human.percepts['r']][human.percepts['c']].startswith(human.teamLetter):
-                    human.cellClicked = human.percepts
-                    return
-
-            if self.game.board[human.percepts['r']][human.percepts['c']] == "E":
-                # Check if it's a legal move
-                legalBoards = self.game.legalNextBoards(self.game.board, human.team)
-                legalBoard = []
-                for board in legalBoards:
-                    if board[human.cellClicked['r']][human.cellClicked['c']] == "E" and board[human.percepts['r']][human.percepts['c']].startswith(human.teamLetter):
-                        legalBoard = board
-                        break
-                if len(legalBoard) > 0:
-                    human.nextMove = legalBoard
-                    human.cellClicked = {}
+            human = self.agents[self.game.next_player]
+            COLS = 'ABCDEFGHJKLMNOPQRST'
+            human.move = COLS[args['c']] + str(int(args['r']) + 1)
 
 
     def startStop(self):
@@ -222,7 +209,13 @@ class Simulation(tk.Frame):
         if type == "Random":
             return naive.RandomBot()
         if type == "Human":
-            return agent.human.Human()
+            return human.Human()
+        if type == "Minimax":
+            return minimax.MinimaxAgent()
+        if type == "Alpha Beta":
+            return alphabeta.AlphaBetaAgent(3)
+        if type == "Monte Carlo":
+            return mcts.MCTSAgent(500, 1.4)
         return naive.RandomBot()
 
     def drawBoard(self):
@@ -256,36 +249,32 @@ class Simulation(tk.Frame):
                     if not left and not up:
                         self.strings[row][col].append(self.drawnBoard[row][col].create_arc(1, 1, 24, 24, style = 'arc', start = '90', extent = '90'))
                     if left and not up:
-                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(-3, 1, 12.5, 1))
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(0, 1, 12.5, 1))
                     if not left and up:
-                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(1, -3, 1, 12.5))
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(1, 0, 1, 12.5))
                     if not right and not up:
                         self.strings[row][col].append(self.drawnBoard[row][col].create_arc(1, 1, 24, 24, style = 'arc', start = '0', extent = '90'))
                     if right and not up:
-                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(12.5, 1, 28, 1))
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(12.5, 1, 25, 1))
                     if not right and up:
-                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(24, -3, 24, 12.5))
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(24, 0, 24, 12.5))
                     if not left and not down:
                         self.strings[row][col].append(self.drawnBoard[row][col].create_arc(1, 1, 24, 24, style = 'arc', start = '180', extent = '90'))
                     if left and not down:
-                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(-3, 24, 12.5, 24))
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(0, 24, 12.5, 24))
                     if not left and down:
-                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(1, 12.5, 1, 28))
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(1, 12.5, 1, 25))
                     if not right and not down:
                         self.strings[row][col].append(self.drawnBoard[row][col].create_arc(1, 1, 24, 24, style = 'arc', start = '270', extent = '90'))
                     if right and not down:
-                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(12.5, 24, 28, 24))
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(12.5, 24, 25, 24))
                     if not right and down:
-                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(24, 12.5, 24, 28))
-                    
-
-
-
+                        self.strings[row][col].append(self.drawnBoard[row][col].create_line(24, 12.5, 24, 25))
 
     def reset(self):
         self.gamecount = 0
         self.wincounts = [0, 0, 0]
-        self.game = goboard_slow.GameState.new_game(19)
+        self.game = goboard.GameState.new_game(19)
         self.winner = 0
         self.count = 0
         self.turn = 0
@@ -301,7 +290,7 @@ class Simulation(tk.Frame):
         '''runs a turn of the simulation'''
 
         if (self.turn == 0 and self.team1AgentType.get() == "Human") or (self.turn == 1 and self.team2AgentType.get() == "Human"):
-            if len(self.agents[self.turn].nextMove) == 0: # Only continue if the move is ready
+            if self.agents[self.game.next_player].move is None: # Only continue if the move is ready
                 return
 
         bot_move = self.agents[self.game.next_player].select_move(self.game)
