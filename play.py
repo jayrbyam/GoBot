@@ -1,4 +1,4 @@
-from dlgo.agent import naive, human
+from dlgo.agent import naive, human, predict
 from dlgo.minimax import alphabeta, minimax
 from dlgo.mcts import mcts
 from dlgo import goboard
@@ -74,9 +74,9 @@ class Simulation(tk.Frame):
         self.team2AgentType = tk.StringVar(value="Human")
         self.team2AgentType.trace('w', self.agentTypeChanged)
         tk.Label(self.optionsFrame, text="Team 1 Agent Type").grid(column = 0, row = 0)
-        self.team1Type = tk.OptionMenu(self.optionsFrame, self.team1AgentType, "Human", "Random", "Minimax", "Alpha Beta", "Monte Carlo")
+        self.team1Type = tk.OptionMenu(self.optionsFrame, self.team1AgentType, "Human", "Random", "Minimax", "Alpha Beta", "Monte Carlo", "Deep Learning")
         tk.Label(self.optionsFrame, text="Team 2 Agent Type").grid(column = 0, row = 1)
-        self.team2Type = tk.OptionMenu(self.optionsFrame, self.team2AgentType, "Human", "Random", "Minimax", "Alpha Beta", "Monte Carlo")
+        self.team2Type = tk.OptionMenu(self.optionsFrame, self.team2AgentType, "Human", "Random", "Minimax", "Alpha Beta", "Monte Carlo", "Deep Learning")
         self.team1Type.grid(column = 1, row = 0)
         self.team2Type.grid(column = 1, row = 1)
 
@@ -216,6 +216,8 @@ class Simulation(tk.Frame):
             return alphabeta.AlphaBetaAgent(3)
         if type == "Monte Carlo":
             return mcts.MCTSAgent(500, 1.4)
+        if type == "Deep Learning":
+            return predict.DeepLearningAgent()
         return naive.RandomBot()
 
     def drawBoard(self):
