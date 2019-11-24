@@ -1,38 +1,33 @@
+import h5py
+
+from dlgo.agent.predict import DeepLearningAgent, load_prediction_agent
 from dlgo.data.parallel_processor import GoDataProcessor
-from dlgo.encoders.oneplane import OnePlaneEncoder
+from dlgo.encoders.sevenplane import SevenPlaneEncoder
 
-from dlgo.networks import small
+from dlgo.httpfrontend.server import get_web_app
 from keras.models import Sequential
-from keras.layers.core import Dense
-from keras.callbacks import ModelCheckpoint
+from keras.layers import Dense
+from dlgo.networks import large
 
-go_board_rows, go_board_cols = 19, 19
-num_classes = go_board_rows * go_board_cols
-num_games = 100
+if __name__ == '__main__': 
+    go_board_rows, go_board_cols = 19, 19
+    num_classes = go_board_rows * go_board_cols
 
-encoder = OnePlaneEncoder((go_board_rows, go_board_cols))
-processor = GoDataProcessor(encoder = encoder.name())
-generator = processor.load_go_data('train', num_games, use_generator = True)
-test_generator = processor.load_go_data('test', num_games, use_generator = True)
+    encoder = SevenPlaneEncoder((go_board_rows, go_board_cols))
+    processor = GoDataProcessor(encoder = encoder.name())
+    X, Y = processor.load_go_data(num_samples=100)
 
-input_shape = (encoder.num_planes, go_board_rows, go_board_cols)
-network_layers = small.layers(input_shape)
-model = Sequential()
-for layer in network_layers:
-    model.add(layer)
-model.add(Dense(num_classes, activation = 'softmax'))
-model.compile(loss = 'categorical_crossentropy', optimizer = 'sgd', metrics = ['accuracy'])
+    input_shape = (encoder.num_planes, go_board_rows, go_board_cols)
+    model = Sequential()
+    network_layers = large.layers(input_shape)
+    for layer in network_layers:
+        model.add(layer)
+    model.add(Dense(num_classes, activation = 'softmax'))
+    model.compile(loss = 'categorical_crossentropy', optimizer = 'adadelta', metrics = ['accuracy'])
 
-epochs = 5
-batch_size = 128
-model.fit_generator(
-    generator = generator.generate(batch_size, num_classes),
-    epochs = epochs,
-    steps_per_epoch = generator.get_num_samples(),
-    validation_data = test_generator.generate(batch_size = batch_size, num_classes = num_classes),
-    callbacks = [ModelCheckpoint('../checkpoints/small_model_epoch_{epoch}.h5')]
-)
-model.evaluate_generator(
-    generator = test_generator.generate(batch_size = batch_size, num_classes = num_classes),
-    steps = test_generator.get_num_samples() / batch_size
-)
+    model.fit(X, Y, batch_size = 128, epochs = 20)
+    model.save("deep_bot.h5")
+
+    model_file = h5py.File("deep_bot.h5", "w")
+    deep_learning_bot = DeepLearningAgent(model, encoder)
+    deep_learning_bot.serialize(model_file)

@@ -3,7 +3,7 @@ import numpy as np
 
 from dlgo.agent.base import Agent
 from dlgo.agent.helpers import is_point_an_eye
-from dlgo import encoders
+from dlgo.encoders.base import get_encoder_by_name
 from dlgo import goboard
 from dlgo import kerasutil
 # end::dl_agent_imports[]
@@ -77,7 +77,7 @@ def load_prediction_agent(h5file):
         encoder_name = encoder_name.decode('ascii')
     board_width = h5file['encoder'].attrs['board_width']
     board_height = h5file['encoder'].attrs['board_height']
-    encoder = encoders.get_encoder_by_name(
+    encoder = get_encoder_by_name(
         encoder_name, (board_width, board_height))
     return DeepLearningAgent(model, encoder)
 # tag::dl_agent_deserialize[]

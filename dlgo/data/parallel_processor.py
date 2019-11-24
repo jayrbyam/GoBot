@@ -12,7 +12,7 @@ from os import sys
 from keras.utils import to_categorical
 
 from dlgo.gosgf import Sgf_game
-from dlgo.goboard_fast import Board, GameState, Move
+from dlgo.goboard import Board, GameState, Move
 from dlgo.gotypes import Player, Point
 from dlgo.data.index_processor import KGSIndex
 from dlgo.data.sampling import Sampler
