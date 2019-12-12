@@ -2,14 +2,12 @@
 import random
 import logging
 from train import train_and_score
-import copy
 
 class Network():
     """Represent a network and let us operate on it.
 
     Currently only works for an MLP.
     """
-
     def __init__(self, nn_param_choices=None):
         """Initialize our network.
 
@@ -23,15 +21,10 @@ class Network():
         self.accuracy = 0.
         self.nn_param_choices = nn_param_choices
         self.network = {}  # (dic): represents MLP network parameters
-        self.velocity = {}
-        self.pbest = {}
 
     def create_random(self):
         """Create a random network."""
-        for key in self.nn_param_choices:
-            self.network[key] = random.uniform(0, len(self.nn_param_choices[key]) - 1)
-        self.pbest = copy.deepcopy(self.network)
-
+        raise NotImplementedError()
 
     def create_set(self, network):
         """Set network properties.

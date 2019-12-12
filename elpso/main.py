@@ -1,6 +1,7 @@
 """Entry point to evolving the neural network. Start here."""
 import logging
 from optimizer import Optimizer
+from elpso import ELPSO
 from tqdm import tqdm
 
 # Setup logging.
@@ -40,7 +41,7 @@ def get_average_accuracy(networks):
 
     return total_accuracy / len(networks)
 
-def generate(generations, population, nn_param_choices, dataset):
+def generate(generations, population, nn_param_choices, dataset, elpso = False):
     """Generate a network with the genetic algorithm.
 
     Args:
@@ -50,7 +51,11 @@ def generate(generations, population, nn_param_choices, dataset):
         dataset (str): Dataset to use for training/evaluating
 
     """
-    optimizer = Optimizer(nn_param_choices)
+    optimizer = None
+    if not elpso:
+        optimizer = Optimizer(nn_param_choices)
+    else:
+        optimizer = ELPSO(nn_param_choices)
     networks = optimizer.create_population(population)
 
     # Evolve the generation.
@@ -94,7 +99,7 @@ def main():
     """Evolve a network."""
     generations = 10  # Number of times to evole the population.
     population = 20  # Number of networks in each generation.
-    dataset = 'cifar10'
+    dataset = 'mnist'
 
     nn_param_choices = {
         'nb_neurons': [16, 32, 64, 128, 256, 512, 768, 1024, 2048, 4096],
@@ -111,7 +116,7 @@ def main():
             'softsign',
             'tanh'
         ],
-        'optimizer': ['rmsprop', 'adam', 'sgd', 'adagrad', 'adadelta', 'adamax', 'nadam', 'ftrl']
+        'optimizer': ['rmsprop', 'adam', 'sgd', 'adagrad', 'adadelta', 'adamax', 'nadam']
     }
 
     logging.info("***Evolving %d generations with population %d***" %

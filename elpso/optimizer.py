@@ -8,7 +8,7 @@ Credit:
 from functools import reduce
 from operator import add
 import random
-from network import Network
+from genetic_network import GeneticNetwork
 
 class Optimizer():
     """Class that implements genetic algorithm for MLP optimization."""
@@ -46,7 +46,7 @@ class Optimizer():
         pop = []
         for _ in range(0, count):
             # Create a random network.
-            network = Network(self.nn_param_choices)
+            network = GeneticNetwork(self.nn_param_choices)
             network.create_random()
 
             # Add the network to our population.
@@ -95,7 +95,7 @@ class Optimizer():
                 )
 
             # Now create a network object.
-            network = Network(self.nn_param_choices)
+            network = GeneticNetwork(self.nn_param_choices)
             network.create_set(child)
 
             # Randomly mutate some of the children.

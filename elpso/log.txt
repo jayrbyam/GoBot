@@ -1,0 +1,142 @@
+12/09/2019 09:01:15 AM - INFO - ***Evolving 10 generations with population 20***
+12/09/2019 09:01:15 AM - INFO - ***Doing generation 1 of 10***
+12/09/2019 09:01:15 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:66: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+12/09/2019 09:01:15 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:541: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+12/09/2019 09:01:15 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:4432: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+12/09/2019 09:01:16 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:148: The name tf.placeholder_with_default is deprecated. Please use tf.compat.v1.placeholder_with_default instead.
+
+12/09/2019 09:01:16 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:3733: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+12/09/2019 09:01:16 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\optimizers.py:793: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+12/09/2019 09:01:16 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:3576: The name tf.log is deprecated. Please use tf.math.log instead.
+
+12/09/2019 09:01:16 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\tensorflow\python\ops\math_grad.py:1250: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+12/09/2019 11:34:15 AM - INFO - Generation average: 78.27%
+12/09/2019 11:34:15 AM - INFO - --------------------------------------------------------------------------------
+12/09/2019 01:57:46 PM - INFO - ***Evolving 10 generations with population 20***
+12/09/2019 01:57:46 PM - INFO - ***Doing generation 1 of 10***
+12/09/2019 01:57:47 PM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:66: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+12/09/2019 01:57:47 PM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:541: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+12/09/2019 01:57:47 PM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:4432: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+12/09/2019 01:57:47 PM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:148: The name tf.placeholder_with_default is deprecated. Please use tf.compat.v1.placeholder_with_default instead.
+
+12/09/2019 01:57:47 PM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:3733: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+12/09/2019 01:57:47 PM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\optimizers.py:793: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+12/09/2019 01:57:47 PM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:3576: The name tf.log is deprecated. Please use tf.math.log instead.
+
+12/09/2019 01:57:47 PM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\tensorflow\python\ops\math_grad.py:1250: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+12/09/2019 11:10:50 PM - INFO - Generation average: 83.64%
+12/09/2019 11:10:50 PM - INFO - --------------------------------------------------------------------------------
+12/09/2019 11:10:50 PM - INFO - ***Doing generation 2 of 10***
+12/09/2019 11:10:50 PM - INFO - Generation average: 83.64%
+12/09/2019 11:10:50 PM - INFO - --------------------------------------------------------------------------------
+12/09/2019 11:10:50 PM - INFO - ***Doing generation 3 of 10***
+12/09/2019 11:10:50 PM - INFO - Generation average: 83.64%
+12/09/2019 11:10:50 PM - INFO - --------------------------------------------------------------------------------
+12/09/2019 11:10:50 PM - INFO - ***Doing generation 4 of 10***
+12/09/2019 11:10:50 PM - INFO - Generation average: 83.64%
+12/09/2019 11:10:50 PM - INFO - --------------------------------------------------------------------------------
+12/09/2019 11:10:50 PM - INFO - ***Doing generation 5 of 10***
+12/09/2019 11:10:50 PM - INFO - Generation average: 83.64%
+12/09/2019 11:10:50 PM - INFO - --------------------------------------------------------------------------------
+12/09/2019 11:10:50 PM - INFO - ***Doing generation 6 of 10***
+12/09/2019 11:10:50 PM - INFO - Generation average: 83.64%
+12/09/2019 11:10:50 PM - INFO - --------------------------------------------------------------------------------
+12/09/2019 11:10:50 PM - INFO - ***Doing generation 7 of 10***
+12/09/2019 11:10:50 PM - INFO - Generation average: 83.64%
+12/09/2019 11:10:50 PM - INFO - --------------------------------------------------------------------------------
+12/09/2019 11:10:50 PM - INFO - ***Doing generation 8 of 10***
+12/09/2019 11:10:50 PM - INFO - Generation average: 83.64%
+12/09/2019 11:10:50 PM - INFO - --------------------------------------------------------------------------------
+12/09/2019 11:10:50 PM - INFO - ***Doing generation 9 of 10***
+12/09/2019 11:10:50 PM - INFO - Generation average: 83.64%
+12/09/2019 11:10:50 PM - INFO - --------------------------------------------------------------------------------
+12/09/2019 11:10:50 PM - INFO - ***Doing generation 10 of 10***
+12/09/2019 11:10:50 PM - INFO - Generation average: 83.64%
+12/09/2019 11:10:50 PM - INFO - --------------------------------------------------------------------------------
+12/09/2019 11:10:50 PM - INFO - --------------------------------------------------------------------------------
+12/09/2019 11:10:50 PM - INFO - {'nb_neurons': 256, 'nb_layers': 4, 'activation': 'relu', 'optimizer': 'adam'}
+12/09/2019 11:10:50 PM - INFO - Network accuracy: 98.51%
+12/09/2019 11:10:50 PM - INFO - {'nb_neurons': 256, 'nb_layers': 2, 'activation': 'linear', 'optimizer': 'adadelta'}
+12/09/2019 11:10:50 PM - INFO - Network accuracy: 98.08%
+12/09/2019 11:10:50 PM - INFO - {'nb_neurons': 128, 'nb_layers': 1, 'activation': 'linear', 'optimizer': 'nadam'}
+12/09/2019 11:10:50 PM - INFO - Network accuracy: 97.92%
+12/09/2019 11:10:50 PM - INFO - {'nb_neurons': 32, 'nb_layers': 4, 'activation': 'elu', 'optimizer': 'nadam'}
+12/09/2019 11:10:50 PM - INFO - Network accuracy: 97.87%
+12/09/2019 11:10:50 PM - INFO - {'nb_neurons': 16, 'nb_layers': 9, 'activation': 'hard_sigmoid', 'optimizer': 'nadam'}
+12/09/2019 11:10:50 PM - INFO - Network accuracy: 97.84%
+12/10/2019 07:58:19 AM - INFO - ***Evolving 10 generations with population 20***
+12/10/2019 07:58:19 AM - INFO - ***Doing generation 1 of 10***
+12/10/2019 07:58:20 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:66: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+12/10/2019 07:58:20 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:541: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+12/10/2019 07:58:20 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:4432: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+12/10/2019 07:58:20 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:148: The name tf.placeholder_with_default is deprecated. Please use tf.compat.v1.placeholder_with_default instead.
+
+12/10/2019 07:58:20 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:3733: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+12/10/2019 07:58:20 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\optimizers.py:793: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+12/10/2019 07:58:20 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\keras\backend\tensorflow_backend.py:3576: The name tf.log is deprecated. Please use tf.math.log instead.
+
+12/10/2019 07:58:20 AM - WARNING - From C:\Users\jayrb\AppData\Roaming\Python\Python36\site-packages\tensorflow\python\ops\math_grad.py:1250: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+12/10/2019 04:11:43 PM - INFO - Generation average: 40.23%
+12/10/2019 04:11:43 PM - INFO - --------------------------------------------------------------------------------
+12/10/2019 04:11:43 PM - INFO - ***Doing generation 2 of 10***
+12/10/2019 07:50:23 PM - INFO - Generation average: 91.27%
+12/10/2019 07:50:23 PM - INFO - --------------------------------------------------------------------------------
+12/10/2019 07:50:23 PM - INFO - ***Doing generation 3 of 10***
+12/11/2019 08:38:11 AM - INFO - Generation average: 97.69%
+12/11/2019 08:38:11 AM - INFO - --------------------------------------------------------------------------------
+12/11/2019 08:38:11 AM - INFO - ***Doing generation 4 of 10***
+12/11/2019 11:21:15 AM - INFO - Generation average: 97.62%
+12/11/2019 11:21:15 AM - INFO - --------------------------------------------------------------------------------
+12/11/2019 11:21:15 AM - INFO - ***Doing generation 5 of 10***
+12/11/2019 12:05:36 PM - INFO - Generation average: 93.40%
+12/11/2019 12:05:36 PM - INFO - --------------------------------------------------------------------------------
+12/11/2019 12:05:36 PM - INFO - ***Doing generation 6 of 10***
+12/11/2019 01:22:46 PM - INFO - Generation average: 98.21%
+12/11/2019 01:22:46 PM - INFO - --------------------------------------------------------------------------------
+12/11/2019 01:22:46 PM - INFO - ***Doing generation 7 of 10***
+12/11/2019 02:26:53 PM - INFO - Generation average: 93.87%
+12/11/2019 02:26:53 PM - INFO - --------------------------------------------------------------------------------
+12/11/2019 02:26:53 PM - INFO - ***Doing generation 8 of 10***
+12/11/2019 03:23:22 PM - INFO - Generation average: 98.28%
+12/11/2019 03:23:22 PM - INFO - --------------------------------------------------------------------------------
+12/11/2019 03:23:22 PM - INFO - ***Doing generation 9 of 10***
+12/11/2019 04:12:14 PM - INFO - Generation average: 98.29%
+12/11/2019 04:12:14 PM - INFO - --------------------------------------------------------------------------------
+12/11/2019 04:12:14 PM - INFO - ***Doing generation 10 of 10***
+12/11/2019 04:55:38 PM - INFO - Generation average: 97.97%
+12/11/2019 04:55:38 PM - INFO - --------------------------------------------------------------------------------
+12/11/2019 04:55:38 PM - INFO - --------------------------------------------------------------------------------
+12/11/2019 04:55:38 PM - INFO - {'nb_neurons': 512, 'nb_layers': 2, 'activation': 'elu', 'optimizer': 'adamax'}
+12/11/2019 04:55:38 PM - INFO - Network accuracy: 98.49%
+12/11/2019 04:55:38 PM - INFO - {'nb_neurons': 512, 'nb_layers': 2, 'activation': 'elu', 'optimizer': 'adamax'}
+12/11/2019 04:55:38 PM - INFO - Network accuracy: 98.44%
+12/11/2019 04:55:38 PM - INFO - {'nb_neurons': 512, 'nb_layers': 6, 'activation': 'sigmoid', 'optimizer': 'adamax'}
+12/11/2019 04:55:38 PM - INFO - Network accuracy: 98.41%
+12/11/2019 04:55:38 PM - INFO - {'nb_neurons': 512, 'nb_layers': 6, 'activation': 'elu', 'optimizer': 'adamax'}
+12/11/2019 04:55:38 PM - INFO - Network accuracy: 98.40%
+12/11/2019 04:55:38 PM - INFO - {'nb_neurons': 512, 'nb_layers': 2, 'activation': 'elu', 'optimizer': 'adamax'}
+12/11/2019 04:55:38 PM - INFO - Network accuracy: 98.37%

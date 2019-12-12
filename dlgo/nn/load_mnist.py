@@ -21,7 +21,6 @@ def shape_data(data):
 
     return list(zip(features, labels))  # <3>
 
-
 def load_data_impl():
     # file retrieved by:
     #   wget https://s3.amazonaws.com/img-datasets/mnist.npz -O code/dlgo/nn/mnist.npz
@@ -35,12 +34,10 @@ def load_data_impl():
     return (x_train, y_train), (x_test, y_test)
 
 def load_data():
-    train_data, test_data = load_data_impl()
-    #with gzip.open('mnist.pkl.gz', 'rb') as f:
-    #    train_data, validation_data, test_data pickle.load(f)
-    
+    #train_data, test_data = load_data_impl()
+    with gzip.open('mnist.pkl.gz', 'rb') as f:
+        train_data, validation_data, test_data = pickle.load(f, encoding='bytes')
     return shape_data(train_data), shape_data(test_data)
-
 
 # <1> We flatten the input images to feature vectors of length 784.
 # <2> All labels are one-hot encoded.

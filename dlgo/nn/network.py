@@ -49,7 +49,7 @@ class SequentialNetwork:  # <1>
 
 # tag::train[]
     def train(self, training_data, epochs, mini_batch_size,
-              learning_rate, test_data=None):
+              learning_rate, inner_test_data, test_data=None):
         n = len(training_data)
         for epoch in range(epochs):  # <1>
             random.shuffle(training_data)
@@ -59,12 +59,12 @@ class SequentialNetwork:  # <1>
             ]
             for mini_batch in mini_batches:
                 self.train_batch(mini_batch, learning_rate)  # <3>
+            print("Epoch {0} complete".format(epoch))
+            n_test = len(inner_test_data)
+            print("Epoch {0} MNIST: {1} / {2}".format(epoch, self.evaluate(inner_test_data), n_test))  # <4>
             if test_data:
                 n_test = len(test_data)
-                print("Epoch {0}: {1} / {2}"
-                      .format(epoch, self.evaluate(test_data), n_test))  # <4>
-            else:
-                print("Epoch {0} complete".format(epoch))
+                print("Epoch {0} Images: {1} / {2}".format(epoch, self.evaluate(test_data), n_test))  # <4>
 
 # <1> To train our network, we pass over data for as many times as there are epochs.
 # <2> We shuffle training data and create mini-batches.

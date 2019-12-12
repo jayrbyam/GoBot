@@ -1,7 +1,6 @@
 from __future__ import print_function
 # tag::imports[]
 import numpy as np
-from scipy.special import expit
 # end::imports[]
 
 
